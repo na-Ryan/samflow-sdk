@@ -10,9 +10,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Narayanan Chandran",
+  "license": "MIT",
   "dependencies": {
+    "kafkajs": "^2.2.0",
+    "redis": "^4.3.1",
     "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1"
   }
 }
