@@ -1,4 +1,4 @@
-name: Samflow SDK PR test
+name: Samflow SDK master build
 on:
   push:
     branches:
