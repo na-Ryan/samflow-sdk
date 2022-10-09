@@ -15,6 +15,11 @@ export abstract class WorkerModel {
     constructor(metadata: WorkerMetadata ){
         this.metadata = metadata;
     }
+    public initData(model : any){
+        this.instanceId = model.instanceId;
+        this.taskId = model.taskId;
+        this.createdAt = Date.now();
+    }
 
     public getMetadata() : WorkerMetadata {
         return this.metadata;

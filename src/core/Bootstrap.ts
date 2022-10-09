@@ -40,10 +40,20 @@ export class Bootstrap{
         Bootstrap.redisClient.setValue(appName, JSON.stringify(metadata));
         Bootstrap.kafkaClient = KafkaClient.getInstance(metadata);
         Bootstrap.kafkaClient.subscribe(metadata, function(message : Object){
+            model.initData(message);
             model.feedData(message);
-            let data = proc.executeTask(model);
-            Logger.log(JSON.stringify(data));
-            Bootstrap.kafkaClient.publishValue(metadata, data);
+            proc.onStart(model);
+            try{
+                let data = proc.executeTask(model);
+                model.outputData = data;
+                proc.finish();
+                Logger.log(model.taskId + " process Successfully with data "+ JSON.stringify(model));
+                Bootstrap.kafkaClient.publishValue(metadata, model);
+            }catch(e){
+                proc.errored();
+                Logger.log(model.taskId + " Failed to execute with " + e.message);
+                Bootstrap.kafkaClient.publishValue(metadata, model);
+            }
         })
 
     }
