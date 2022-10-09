@@ -1,9 +1,6 @@
 name: Samflow SDK PR test
 on:
   pull_request:
-    types: [opened, edited]
-    branches:
-      - 'master'
     path:
       - "**.ts"
 jobs:
