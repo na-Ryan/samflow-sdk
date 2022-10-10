@@ -56,8 +56,6 @@ samflow start
 
 ## Contributing
 
-### Contributing Guidelines
-
 Want to report a bug, contribute some code, or improve documentation? Excellent! Please email to cnarayan12ster@gmail.com.
 
 ## MIT
