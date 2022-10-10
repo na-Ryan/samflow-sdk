@@ -58,6 +58,8 @@ samflow start
 
 Want to report a bug, contribute some code, or improve documentation? Excellent! Please email to cnarayan12ster@gmail.com.
 
-## MIT
-### The MIT License
+## The MIT License
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
+
+[node.js]: https://nodejs.org/
+[npm]: https://www.npmjs.com/get-npm
