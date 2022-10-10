@@ -16,7 +16,7 @@ describe('Redis client testing', ()=>{
     });
 
     it('should able to get connection',  async ()=>{
-       return  expect(client.setValue("test", "value")).to.eventually.equal(true);      
+       return  expect(client.setValue("test", "value")).be.fulfilled;      
     } );
     it('should able to get value',  async ()=>{
         return expect(client.getValue("test")).to.eventually.deep.equal("value");

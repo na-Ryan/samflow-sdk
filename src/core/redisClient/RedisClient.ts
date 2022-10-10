@@ -25,12 +25,9 @@ export class RedisClient {
         try{
             await RedisClient.client.set(key, value);
             Logger.log("Successfully set "+ key);
-            return true
         }catch(e){
             Logger.error("Unable to set "+ key + "as value " + value);
-            setTimeout(async function(){
-                await RedisClient.instance.setValue(key, value);
-            }, 2000)
+            
         }
     }
 
