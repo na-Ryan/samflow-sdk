@@ -1,7 +1,7 @@
 name: Samflow SDK PR test
 on:
   pull_request:
-    path:
+    paths:
       - "**.ts"
 jobs:
   build:
