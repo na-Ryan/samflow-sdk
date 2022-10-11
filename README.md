@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/na-Ryan/ImageRepo/main/image%201.png" alt="samflow-logo" width="120px" height="120px"/>
   <br>
-  <i>Samflow is a high scalable, elastic, cloud-agnostic and open-source no-code platform for building workflow or orchestrate anything without the knowledge of code.<br>For example you can implement employee onboard workflows or trigger alarm in case of fire or launch <b>Falcon Heavy</b> on recieving an email.</i>
+  <i>Samflow is a highly scalable, elastic, cloud-agnostic and open-source no-code platform for building workflow or orchestrate anything without the knowledge of code.<br>For example you can implement employee onboard workflows or trigger alarm in case of fire or launch <b>Falcon Heavy</b> on recieving an email.</i>
   <br>
 </p>
 
