@@ -1,4 +1,4 @@
-<h1 align="center">Samflow - Modern Open Source no-code platform.</h1>
+<h1 align="center">Samflow - Modern Open Source no-code platform.[incubating]</h1>
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/na-Ryan/ImageRepo/main/image%201.png" alt="samflow-logo" width="120px" height="120px"/>
