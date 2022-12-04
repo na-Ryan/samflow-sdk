@@ -6,7 +6,8 @@ export class KafkaClient {
     private static consumerClient: Consumer;
     private static instance : KafkaClient;
     private static producerClient : Producer;
-    private static signalTraps = ['SIGTERM', 'SIGINT', 'SIGUSR2']
+    private static signalTraps = ['SIGTERM', 'SIGINT', 'SIGUSR2'];
+    private callBack:any = {};
 
     private constructor(metaData: WorkerMetadata){
         const kafka = new Kafka({
@@ -29,11 +30,13 @@ export class KafkaClient {
     }
 
     public async subscribe(metaData: WorkerMetadata, callBack : Function){
+        const topic = "topic-" + metaData.category + "_" + metaData.name + '_' + metaData.version;
+        this.callBack[topic] = callBack;
         await KafkaClient.consumerClient.subscribe({ topics: ["topic-" + metaData.category + "_" + metaData.name + '_' + metaData.version], fromBeginning: true });
         await KafkaClient.consumerClient.run({
             eachMessage: async ({ topic, partition, message, heartbeat, pause }) => {
                 Logger.log(message.value.toString());
-                callBack(JSON.parse(message.value.toString()));
+                this.callBack[topic](JSON.parse(message.value.toString()));
             },
         })
     }
