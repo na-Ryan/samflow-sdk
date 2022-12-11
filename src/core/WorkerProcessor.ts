@@ -1,5 +1,5 @@
 import { WorkerModel } from "./WorkerModel";
-import {RedisClient} from "./redisClient/RedisClient"
+import { RedisClient } from "./redisClient/RedisClient";
 import { Logger } from "./Util/Logger";
 import { v4 as uuidv4 } from 'uuid';
 
