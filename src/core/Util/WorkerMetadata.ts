@@ -3,5 +3,7 @@ export type WorkerMetadata = {
     category : string,
     displayName : string,
     nameSpace : string,
-    version: string
+    version: string,
+    inputSchema : string,
+    outputSchema : string
 }

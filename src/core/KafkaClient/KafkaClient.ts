@@ -11,8 +11,8 @@ export class KafkaClient {
 
     private constructor(metaData: WorkerMetadata){
         const kafka = new Kafka({
-            clientId: 'my-app2',
-            brokers : [(process.env.KAFKA_HOST_NAME || '127.0.0.1')+ ":" +  (process.env.KAFKA_PORT || '9092') ]
+            clientId: process.env.KAFKA_CLIENT_NAME || 'my-app2',
+            brokers : [(process.env.KAFKA_HOST_NAME || '127.0.0.1')+ ":" +  (process.env.KAFKA_HOST_PORT || '9092') ]
         });
         KafkaClient.consumerClient = kafka.consumer({ groupId: "group-" + metaData.category + "_" + metaData.name + '_' + metaData.version });
         KafkaClient.producerClient = kafka.producer({ createPartitioner: Partitioners.LegacyPartitioner  });
@@ -43,7 +43,7 @@ export class KafkaClient {
     public async publishValue(metaData: WorkerMetadata, value : Object){
         await KafkaClient.producerClient.connect();
         await KafkaClient.producerClient.send({
-            topic : "processed-" + metaData.category + "_" + metaData.name + '_' + metaData.version,
+            topic : "processed-task",
             messages : [{value : JSON.stringify(value) || value.toString()}]
         });
     }

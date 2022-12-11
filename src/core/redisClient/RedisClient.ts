@@ -7,7 +7,7 @@ export class RedisClient {
     
 
     private constructor(){
-        RedisClient.client = createClient({ url: 'redis://' + process.env.REDIS_HOST_NAME || '127.0.0.1' + ':' + process.env.REDIS_PORT || '6379'});
+        RedisClient.client = createClient({ url: 'redis://' + process.env.REDIS_HOST_NAME || '127.0.0.1' + ':' + process.env.REDIS_HOST_PORT || '6379'});
         RedisClient.client.on('error', (err: any) => Logger.error('Redis Client Error '+ JSON.stringify(err)));
         RedisClient.client.connect().then(
             ()=>{Logger.log("Redis initilized");}

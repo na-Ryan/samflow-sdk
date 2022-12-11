@@ -7,7 +7,7 @@ export abstract class WorkerModel {
     status : string;
     instanceId : string;
     taskId : string;
-    inputData : object;
+    inputData : object | undefined;
     outputData : object | undefined;
     taskName : string;
     version : string;

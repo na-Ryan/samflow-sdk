@@ -1,5 +1,5 @@
 import { WorkerModel } from "./WorkerModel";
-import { RedisClient } from "./redisClient/RedisClient";
+import {RedisClient} from "./redisClient/RedisClient"
 import { Logger } from "./Util/Logger";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -13,10 +13,9 @@ export abstract class WorkerProcessor<T extends WorkerModel> {
     }
     onStart(model : T){
         this.model = model;
-        let task_id = "task_" + uuidv4();
-        this.model.taskId = task_id;
-        this.redisClient.setValue(task_id,"IN_PROGRESS");
-        Logger.log("task :" + task_id + " started");
+        let taskId = model.taskId;
+        this.redisClient.setValue(taskId,"IN_PROGRESS");
+        Logger.log("task :" + taskId + " started");
         this.model.status = "IN_PROGRESS";
     }
 
