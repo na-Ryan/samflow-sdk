@@ -29,7 +29,7 @@ export class KafkaClient {
         });
     }
     public static async registerSchema(){
-        KafkaClient.schemaRegistry = new SchemaRegistry({ host: 'http://localhost:8085' });
+        KafkaClient.schemaRegistry = new SchemaRegistry({ host: 'http://' + (process.env.SCHEMA_REGISTRY_HOST_NAME || '127.0.0.1') + ':' + (process.env.SCHEMA_REGISTRY_HOST_PORT || '8085') });
         await KafkaClient.schemaRegistry.register({ type: SchemaType.AVRO, schema : startWorker });
         await KafkaClient.schemaRegistry.register({ type: SchemaType.AVRO, schema : processedWorker});
 
