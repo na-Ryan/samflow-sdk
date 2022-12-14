@@ -13,5 +13,10 @@ export class Logger {
     static error(value : string){
         console.error("Error" + value);
     }
+    static debug(value : string){
+        if(process.env.DEBUG_MODE == "true"){
+            console.log('Log: ' + value);
+        }
+    }
     
 }

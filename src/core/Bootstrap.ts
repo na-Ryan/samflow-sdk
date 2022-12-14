@@ -14,7 +14,7 @@ export class Bootstrap{
     
 
     private constructor(){
-        Bootstrap.redisClient = RedisClient.getInstance();
+        //Bootstrap.redisClient = RedisClient.getInstance();
         
     }
 
@@ -37,18 +37,17 @@ export class Bootstrap{
     public registerTask(model : WorkerModel, proc : WorkerProcessor<any>){
         const metadata = model.getMetadata();
         let appName = metadata.nameSpace + ":" + metadata.category + ":task:" + metadata.name + ":" + metadata.version;
-        Bootstrap.redisClient.setValue(appName, JSON.stringify(metadata));
+        //Bootstrap.redisClient.setValue(appName, JSON.stringify(metadata));
         Bootstrap.kafkaClient = KafkaClient.getInstance(metadata);
-        Bootstrap.kafkaClient.subscribe(metadata, function(message : Object){
+        Bootstrap.kafkaClient.subscribe(metadata, function(message : any){
             model.initData(message);
-            model.feedData(message);
+            model.feedData(JSON.parse(message.inputData));
             proc.onStart(model);
             try{
                 let data = proc.executeTask(model);
                 model.outputData = data;
                 proc.finish();
-                Logger.log(model.taskId + " process Successfully with data "+ JSON.stringify(model));
-                Bootstrap.kafkaClient.publishValue(metadata, model);
+                Bootstrap.kafkaClient.publishValue(metadata, model.getSimplifiedModel());
             }catch(e){
                 proc.errored();
                 Logger.log(model.taskId + " Failed to execute with " + e.message);
@@ -59,7 +58,7 @@ export class Bootstrap{
     }
     public degisterTask(metadata : WorkerMetadata){
         let appName = metadata.nameSpace + ":" + metadata.category + ":task:" + metadata.name + ":" + metadata.version;
-        Bootstrap.redisClient.setValue(appName, "");
+        //Bootstrap.redisClient.setValue(appName, "");
     }
 
 

@@ -9,24 +9,24 @@ export abstract class WorkerProcessor<T extends WorkerModel> {
     abstract executeTask( modelObj : T) : Object;
     private redisClient: RedisClient;
     constructor(){
-        this.redisClient = RedisClient.getInstance();
+        //this.redisClient = RedisClient.getInstance();
     }
     onStart(model : T){
         this.model = model;
         let taskId = model.taskId;
-        this.redisClient.setValue(taskId,"IN_PROGRESS");
+        //this.redisClient.setValue(taskId,"IN_PROGRESS");
         Logger.log("task :" + taskId + " started");
         this.model.status = "IN_PROGRESS";
     }
 
     finish(){
-        this.redisClient.setValue(this.model.taskId, "COMPLETED");
+        //this.redisClient.setValue(this.model.taskId, "COMPLETED");
         this.model.status = "COMPLETED";
         this.model.completedAt = Date.now();
     }
 
     errored(){
-        this.redisClient.setValue(this.model.taskId, "ERROR");
+        //this.redisClient.setValue(this.model.taskId, "ERROR");
         this.model.status = "ERROR";
         this.model.completedAt = Date.now();
     }
