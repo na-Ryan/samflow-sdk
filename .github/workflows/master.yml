@@ -18,7 +18,7 @@ jobs:
           node-version: 16
       - run: npm install
       - run: npm test
-      - uses: tintef/nyc-reporter-action
+      - uses: Tintef/nyc-reporter-action
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPORTER: 'Code coverage report'
