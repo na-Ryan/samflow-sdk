@@ -16,9 +16,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Start Redis
-        uses: supercharge/redis-github-action@1.4.0
-        with:
-          redis-version: 6
       - run: npm install
       - run: npm test
+      - uses: tintef/nyc-reporter-action
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPORTER: 'Code coverage report'

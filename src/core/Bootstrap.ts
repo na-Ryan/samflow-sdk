@@ -1,5 +1,4 @@
 import { KafkaClient } from "./KafkaClient/KafkaClient";
-import { RedisClient } from "./redisClient/RedisClient";
 import { Logger } from "./Util/Logger";
 import { WorkerMetadata } from "./Util/WorkerMetadata";
 import { WorkerModel } from "./WorkerModel";
@@ -9,12 +8,10 @@ export class Bootstrap{
 
     private static instance : Bootstrap;
     private static serviceObjs: Array<any>;
-    private static redisClient: RedisClient;
     private static kafkaClient: KafkaClient;
     
 
     private constructor(){
-        //Bootstrap.redisClient = RedisClient.getInstance();
         
     }
 
@@ -37,7 +34,6 @@ export class Bootstrap{
     public registerTask(model : WorkerModel, proc : WorkerProcessor<any>){
         const metadata = model.getMetadata();
         let appName = metadata.nameSpace + ":" + metadata.category + ":task:" + metadata.name + ":" + metadata.version;
-        //Bootstrap.redisClient.setValue(appName, JSON.stringify(metadata));
         Bootstrap.kafkaClient = KafkaClient.getInstance(metadata);
         Bootstrap.kafkaClient.subscribe(metadata, function(message : any){
             model.initData(message);
@@ -58,7 +54,6 @@ export class Bootstrap{
     }
     public degisterTask(metadata : WorkerMetadata){
         let appName = metadata.nameSpace + ":" + metadata.category + ":task:" + metadata.name + ":" + metadata.version;
-        //Bootstrap.redisClient.setValue(appName, "");
     }
 
 

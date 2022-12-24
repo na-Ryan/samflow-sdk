@@ -1,4 +1,4 @@
-import chai from "chai";
+/*import chai from "chai";
 import chaiAsPromised from "chai-as-promised";
 import { isAssertClause } from "typescript";
 import {RedisClient} from "../../src/core/redisClient/RedisClient";
@@ -27,4 +27,4 @@ describe('Redis client testing', ()=>{
     });
 
     
-});
+});*/
