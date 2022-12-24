@@ -1,6 +1,5 @@
 import chai, { assert } from "chai";
 import chaiAsPromised from "chai-as-promised";
-import { isAssertClause } from "typescript";
 import {stdout} from 'test-console';
 import { Logger } from "../../../src/core/Util/Logger";
 
@@ -8,8 +7,6 @@ chai.use(chaiAsPromised);
 let expect = chai.expect;
 
 describe('Test Kafka log', ()=>{
-    
-
     it('Test regular log',  async ()=>{
         const output = stdout.inspectSync(() => {
             Logger.log("test")
@@ -33,8 +30,5 @@ describe('Test Kafka log', ()=>{
             Logger.debug("test")
         });
        return  assert.deepEqual(output, []);     
-    } );
-   
-
-    
+    } );    
 });
